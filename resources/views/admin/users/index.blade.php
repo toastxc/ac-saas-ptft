@@ -34,14 +34,42 @@
                             <span class="text-xs rounded-full bg-zinc-700 p-0.5 px-2 text-zinc-200">
                                 role
                             </span>
-                            </td>
+                        </td>
                         <td class="px-3 py-1 whitespace-nowrap w-1/6">
-                            Suspended
+
+                            @if(empty($user->email_verified_at))
+                                <span
+                                    class="inline-flex items-center justify-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-yellow-700">
+                                <i class="fa-solid fa-question-circle"></i>
+                                <p class="text-sm whitespace-nowrap">Unverified</p>
+                                </span>
+
+                            @elseif (!empty($user->suspended_at))
+                                <span
+                                    class="inline-flex items-center justify-center rounded-full bg-blue-100 px-2.5 py-0.5 text-blue-700">
+                                <i class="fa-solid fa-user-slash"></i>
+                                <p class="text-sm whitespace-nowrap">Suspended</p>
+                                </span>
+                            @elseif (!empty($user->banned_at))
+                                <span
+                                    class="inline-flex items-center justify-center rounded-full bg-red-100 px-2.5 py-0.5 text-red-700">
+                                <i class="fa-solid fa-xmark-circle"></i>
+                                <p class="text-sm whitespace-nowrap">Banned</p>
+                                </span>
+
+                            @else
+                                <span
+                                    class="inline-flex items-center justify-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-emerald-700">
+                                <i class="fa-solid fa-check-circle"></i>
+                                <p class="text-sm whitespace-nowrap">Verified</p>
+                            </span>
+                            @endif
+
                         </td>
                         <td class="px-3 py-1 whitespace-nowrap w-1/8">
                             <form action="{{ route('admin.users.destroy', $user) }}"
                                   method="post"
-                            class="grid grid-cols-3 gap-2 w-full">
+                                  class="grid grid-cols-3 gap-2 w-full">
                                 @csrf
                                 @method('delete')
 
@@ -54,7 +82,8 @@
                                    class="hover:text-blue-500 transition border p-2 text-center rounded">
                                     <i class="fa-solid fa-user-cog"></i>
                                 </a>
-                                <button type="submit" class="hover:text-red-500 transition border p-2 text-center rounded">
+                                <button type="submit"
+                                        class="hover:text-red-500 transition border p-2 text-center rounded">
                                     <i class="fa-solid fa-user-slash"></i>
                                 </button>
                             </form>
@@ -66,9 +95,9 @@
 
                 <tfoot>
                 <tr>
-                   <td colspan="4" class="p-3">
-                       {{ $users->onEachSide(2)->links("vendor.pagination.tailwind") }}
-                   </td>
+                    <td colspan="4" class="p-3">
+                        {{ $users->onEachSide(2)->links("vendor.pagination.tailwind") }}
+                    </td>
                 </tr>
                 </tfoot>
             </table>
