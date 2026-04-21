@@ -25,18 +25,22 @@ class RegisteredUserController extends Controller
     /**
      * Handle an incoming registration request.
      *
+     * password validation: requires minimum length of 20chars for security
+     *
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'given_name' => ['required', 'string', 'max:128'],
+            'family_name' => ['nullable', 'string', 'max:128'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()->min(20)],
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'given_name' => $request->given_name,
+            'family_name' => $request->family_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
