@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
         $seedUsers = [
             [
                 'id' => 99,
-                'name' => 'Super Admin',
+                'given_name' => 'Super Admin',
                 'email' => 'supervisor@example.com',
                 'password' => 'Password1',
                 'email_verified_at' => now(),
@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
 
             [
                 'id' => 100,
-                'name' => 'Admin I Strator',
+                'given_name' => 'Admin I Strator',
                 'email' => 'admin@example.com',
                 'password' => 'Password1',
                 'email_verified_at' => now(),
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
 
             [
                 'id' => 200,
-                'name' => 'Staff User',
+                'given_name' => 'Staff User',
                 'email' => 'staff@example.com',
                 'password' => 'Password1',
                 'email_verified_at' => now(),
@@ -45,7 +45,7 @@ class UserSeeder extends Seeder
 
             [
                 'id' => 300,
-                'name' => 'Client User',
+                'given_name' => 'Client User',
                 'email' => 'client@example.com',
                 'password' => 'Password1',
                 'email_verified_at' => now(),
@@ -55,7 +55,7 @@ class UserSeeder extends Seeder
 
             [
                 'id' => 301,
-                'name' => 'Client User II',
+                'given_name' => 'Client User II',
                 'email' => 'client2@example.com',
                 'password' => 'Password1',
                 'email_verified_at' => null,
@@ -65,7 +65,7 @@ class UserSeeder extends Seeder
 
             [
                 'id' => 302,
-                'name' => 'Client User III',
+                'given_name' => 'Client User III',
                 'email' => 'client3@example.com',
                 'password' => 'Password1',
                 'email_verified_at' => null,
@@ -74,7 +74,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'id' => 303,
-                'name' => 'Client User IV',
+                'given_name' => 'Client User IV',
                 'email' => 'client4@example.com',
                 'password' => 'Password1',
                 'email_verified_at' => null,
