@@ -18,7 +18,8 @@
                         <div class="flex items-center justify-between gap-4 text-pretty">
                             <div>
                                 <h3 class="text-lg/tight font-semibold text-zinc-900">
-                                    {{ auth()->user()->name }}
+                                    {{ auth()->user()->given_name  }}
+
                                 </h3>
 
                                 <p class="mt-0.5 text-sm text-zinc-700">Product Designer</p>

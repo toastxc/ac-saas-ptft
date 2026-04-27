@@ -41,7 +41,12 @@ class UserManagementController extends Controller
      */
     public function show(string $id)
     {
-        //
+
+        $user = User::find($id);
+
+        return view('admin.users.show', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -49,7 +54,12 @@ class UserManagementController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::find($id);
+
+
+        return view('admin.users.edit', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -58,13 +68,61 @@ class UserManagementController extends Controller
     public function update(Request $request, string $id)
     {
         //
+
+        print($id);
+
+        $request->validate([
+            'given_name' => ['nullable', 'string', 'max:128'],
+            'family_name' => ['nullable', 'string', 'max:128'],
+            'email' => ['nullable', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+        ]);
+
+
+        $user = User::find($id);
+
+        if (isset($request->given_name) && $request->given_name !== '') {
+            $user->given_name = $request->given_name;
+        }
+        if (isset($request->family_name) && $request->family_name !== '') {
+            $user->family_name = $request->family_name;
+        }
+        if (isset($request->email) && $request->email !== '') {
+            $user->email = $request->email;
+        }
+
+        $user->save();
+
+
+        return redirect(route('admin.users.show', $user, absolute: false));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        //
+
+        $request->validate([
+            'confirm' => ['nullable', 'string'],
+        ]);
+
+
+        if ($request->confirm == "confirm") {
+            User::destroy($id);
+            return redirect(route('admin.users.index', absolute: false));
+
+        } else {
+            $user = User::find($id);
+            return view('admin.users.destroy', [
+                'user' => $user
+            ]);
+        }
+
+    }
+
+    public function destroy_confirmed(string $id)
+    {
+
+        return redirect(route('admin.users.index', absolute: false));
     }
 }

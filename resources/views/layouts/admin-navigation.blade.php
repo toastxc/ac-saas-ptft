@@ -163,7 +163,8 @@
             <div>
                 <p class="text-xs">
                     <strong class="block font-medium">
-                        {{ auth()->user()->name }}
+                        {{ auth()->user()->given_name }}
+
                     </strong>
 
                     <span>{{ auth()->user()->email }}</span>

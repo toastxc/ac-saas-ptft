@@ -13,6 +13,8 @@ Route::middleware(['auth', 'verified'])
             ->name('index');
 
         Route::resource('users', UserManagementController::class);
+
+
     });
 
 

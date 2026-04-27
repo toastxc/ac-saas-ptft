@@ -27,7 +27,7 @@
 
                     <tr class="*:text-zinc-900 *:first:font-medium hover:bg-white">
                         <td class="px-3 py-1 whitespace-nowrap flex flex-col min-w-1/3">
-                            <span class="">{{ $user->name }}</span>
+                            <span class="">{{ $user->given_name }}</span>
                             <span class="text-sm text-zinc-500">{{ $user->email }}</span>
                         </td>
                         <td class="px-3 py-1 whitespace-nowrap w-auto">
@@ -37,37 +37,21 @@
                         </td>
                         <td class="px-3 py-1 whitespace-nowrap w-1/6">
 
+
+
                             @if(empty($user->email_verified_at))
-                                <span
-                                    class="inline-flex items-center justify-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-yellow-700">
-                                <i class="fa-solid fa-question-circle"></i>
-                                <p class="text-sm whitespace-nowrap">Unverified</p>
-                                </span>
-
+                                <x-chip color="warning" message="Unverified"></x-chip>
                             @elseif (!empty($user->suspended_at))
-                                <span
-                                    class="inline-flex items-center justify-center rounded-full bg-blue-100 px-2.5 py-0.5 text-blue-700">
-                                <i class="fa-solid fa-user-slash"></i>
-                                <p class="text-sm whitespace-nowrap">Suspended</p>
-                                </span>
+                                <x-chip color="info" message="Suspended"></x-chip>
                             @elseif (!empty($user->banned_at))
-                                <span
-                                    class="inline-flex items-center justify-center rounded-full bg-red-100 px-2.5 py-0.5 text-red-700">
-                                <i class="fa-solid fa-xmark-circle"></i>
-                                <p class="text-sm whitespace-nowrap">Banned</p>
-                                </span>
-
+                                <x-chip color="danger" message="banned"></x-chip>
                             @else
-                                <span
-                                    class="inline-flex items-center justify-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-emerald-700">
-                                <i class="fa-solid fa-check-circle"></i>
-                                <p class="text-sm whitespace-nowrap">Verified</p>
-                            </span>
+                                <x-chip color="success" message="Verified"></x-chip>
                             @endif
 
                         </td>
                         <td class="px-3 py-1 whitespace-nowrap w-1/8">
-                            <form action="{{ route('admin.users.destroy', $user) }}"
+                            <form action="{{ route('admin.users.destroy', [$user, false]) }}"
                                   method="post"
                                   class="grid grid-cols-3 gap-2 w-full">
                                 @csrf
