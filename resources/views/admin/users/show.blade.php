@@ -53,6 +53,7 @@
                                     <x-chip color="yellow" message="Unverified"></x-chip>
                                 @elseif (!empty($user->suspended_at))
                                     <x-chip color="blue" message="Suspended"></x-chip>
+                                    {{}}
                                 @elseif (!empty($user->banned_at))
                                     <x-chip color="red" message="banned"></x-chip>
                                 @else

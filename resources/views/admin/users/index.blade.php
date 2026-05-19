@@ -31,12 +31,22 @@
                             <span class="text-sm text-zinc-500">{{ $user->email }}</span>
                         </td>
                         <td class="px-3 py-1 whitespace-nowrap w-auto">
-                            <span class="text-xs rounded-full bg-zinc-700 p-0.5 px-2 text-zinc-200">
-                                role
+
+                            @php
+                                $modal = false;
+                            @endphp
+                            @foreach($user->getRoleNames() as $role)
+                                <span class="text-xs rounded-full bg-zinc-700 p-0.5 px-2 text-zinc-200" >
+                                {{$role}}
+
                             </span>
+                            @endforeach
+
+
+
+
                         </td>
                         <td class="px-3 py-1 whitespace-nowrap w-1/6">
-
 
 
                             @if(empty($user->email_verified_at))

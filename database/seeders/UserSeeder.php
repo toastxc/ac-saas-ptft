@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
                 'email' => 'supervisor@example.com',
                 'password' => 'Password1',
                 'email_verified_at' => now(),
-                'roles' => ['super-user', 'admin'],
+                'roles' => ['super-admin', 'admin'],
                 'permissions' => [],
             ],
 
@@ -99,7 +99,7 @@ class UserSeeder extends Seeder
             );
 
             // Uncomment this line when using Spatie Permissions
-            // $user->assignRole($roles);
+            $user->assignRole($roles);
             // $user->assignPermissions($permissions);
 
         }

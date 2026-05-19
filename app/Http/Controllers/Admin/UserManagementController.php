@@ -45,7 +45,7 @@ class UserManagementController extends Controller
         $user = User::find($id);
 
         return view('admin.users.show', [
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -56,9 +56,8 @@ class UserManagementController extends Controller
     {
         $user = User::find($id);
 
-
         return view('admin.users.edit', [
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -69,14 +68,13 @@ class UserManagementController extends Controller
     {
         //
 
-        print($id);
+        echo $id;
 
         $request->validate([
             'given_name' => ['nullable', 'string', 'max:128'],
             'family_name' => ['nullable', 'string', 'max:128'],
-            'email' => ['nullable', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'email' => ['nullable', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
         ]);
-
 
         $user = User::find($id);
 
@@ -92,7 +90,6 @@ class UserManagementController extends Controller
 
         $user->save();
 
-
         return redirect(route('admin.users.show', $user, absolute: false));
     }
 
@@ -106,15 +103,16 @@ class UserManagementController extends Controller
             'confirm' => ['nullable', 'string'],
         ]);
 
-
-        if ($request->confirm == "confirm") {
+        if ($request->confirm == 'confirm') {
             User::destroy($id);
+
             return redirect(route('admin.users.index', absolute: false));
 
         } else {
             $user = User::find($id);
+
             return view('admin.users.destroy', [
-                'user' => $user
+                'user' => $user,
             ]);
         }
 
@@ -124,5 +122,12 @@ class UserManagementController extends Controller
     {
 
         return redirect(route('admin.users.index', absolute: false));
+    }
+
+    public function role(string $id)
+    {
+
+        view(route('admin.users.role'));
+
     }
 }

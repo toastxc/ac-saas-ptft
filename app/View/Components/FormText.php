@@ -14,7 +14,7 @@ class FormText extends Component
     public function __construct(
         public string $fname,
         public string $value,
-        public string $id  )
+        public string $id)
     {
         //
     }
