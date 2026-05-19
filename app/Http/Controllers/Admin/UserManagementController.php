@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class UserManagementController extends Controller
@@ -54,6 +55,7 @@ class UserManagementController extends Controller
      */
     public function edit(string $id)
     {
+
         $user = User::find($id);
 
         return view('admin.users.edit', [
@@ -98,6 +100,10 @@ class UserManagementController extends Controller
      */
     public function destroy(Request $request, string $id)
     {
+
+        if (Auth::user()->cant('user-delete')) {
+            return redirect(route('admin.users.index', absolute: false));
+        }
 
         $request->validate([
             'confirm' => ['nullable', 'string'],
