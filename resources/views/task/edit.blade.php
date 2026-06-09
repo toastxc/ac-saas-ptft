@@ -1,0 +1,60 @@
+<x-app-layout>
+    <br>
+    <div class="flex justify-center items-center">
+
+        <div class="divide-y-2 divide-zinc-200 bg-zinc-50 drop-shadow-xl rounded-sm p-2">
+        <form method="POST" class="w-full max-w-sm"
+              action="{{ route('tasks.update',$task->id) }}">
+            @csrf
+            @method('patch')
+
+            <x-input-label for="label" :value="__('Label')"/>
+            <x-text-input id="label" class="block mt-1 w-full" type="text"
+                          name="label" value="{{$task->label}}"
+                          autofocus autocomplete="label"
+                          placeholder="{{$task->label}}"/>
+            <x-input-error :messages="$errors->get('label')" class="mt-2"/>
+
+            <x-input-label for="description" :value="__('Description')"/>
+            <x-text-input id="description" class="block mt-1 w-full" type="text"
+                          name="description" value="{{$task->description}}"
+                          autofocus autocomplete="description"
+                          placeholder="{{$task->description}}"/>
+            <x-input-error :messages="$errors->get('description')" class="mt-2"/>
+
+            <x-input-label for="completed" :value="__('Completed')"/>
+            <input type="checkbox"
+                   class="size-8 border-2 border-black bg-white shadow-[2px_2px_0_0] shadow-black checked:bg-black focus:ring-2 focus:ring-black"
+                   value="completed" id="completed"
+
+                   {{ $task->completed ? 'checked' : '' }} name="completed"
+            >
+            <x-input-error :messages="$errors->get('completed')" class="mt-2"/>
+
+
+
+            <div class="md:w-2/3 my-3">
+
+                <button
+                    class="hover:text-white hover:border-white hover:bg-gray-500 transition text-gray-500 border-2 p-2 text-center rounded"
+                    type="submit">
+                    Save
+                </button>
+                <a
+                >
+
+                    <button
+                        class="hover:text-white hover:border-white hover:bg-gray-500 transition text-gray-500 border-2 p-2 text-center rounded">
+                        Cancel
+                    </button>
+                </a>
+
+
+            </div>
+
+        </form>
+    </div>
+    </div>
+
+</x-app-layout>
+

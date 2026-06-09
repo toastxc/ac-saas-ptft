@@ -50,7 +50,9 @@ class Task extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $task = \App\Models\Task::find($id);
+
+        return view('task.edit', ['task' => $task]);
     }
 
     /**
@@ -72,11 +74,31 @@ class Task extends Controller
             } else {
                 $task->completed = false;
             }
+            /*
+             * assumes main edit page
+             */
+        } else {
+
+            $request->validate([
+                'label' => ['string', 'max:32'],
+                'family_name' => ['string', 'max:128'],
+                // completed or null
+                'completed' => ['nullable', 'string', 'min:9', 'max:9'],
+            ]);
+
+            if ($request->completed) {
+                $task->completed = true;
+            } else {
+                $task->completed = false;
+            }
+
+            $task->update($request->all());
+
         }
 
         $task->save();
 
-        return $this->index();
+        return redirect(route('tasks.index', absolute: false));
 
     }
 

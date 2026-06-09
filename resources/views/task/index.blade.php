@@ -19,26 +19,39 @@
 
                     <td class="w-full  col-span-2 justify-center justify-self-center mx-auto  text-white text-center text-lg">
 
-
-                        <form action="{{ route('tasks.update',$task->id,  ) }}"
+                        <form action="{{ route('tasks.update',$task->id) }}"
                               method="post"
                               class="grid grid-cols-3 gap-2 w-full">
                             @csrf
                             @method('patch')
 
 
-                        <label for="completed" class="inline-flex items-center gap-3 text-black">
-                            <input  type="checkbox" class="size-8 border-2 border-black bg-white shadow-[2px_2px_0_0] shadow-black checked:bg-black focus:ring-2 focus:ring-black" value="completed" id="completed"
-                                   onChange="this.form.submit()" {{ $task->completed ? 'checked' : '' }} name="completed"
-                            >
-                        </label>
-                                <input  class="invisible w-0" type="text" value="checkbox" name="checkbox">
+                            <label for="completed" class="inline-flex items-center gap-3 text-black">
+                                <input type="checkbox"
+                                       class="size-8 border-2 border-black bg-white shadow-[2px_2px_0_0] shadow-black checked:bg-black focus:ring-2 focus:ring-black"
+                                       value="completed" id="completed"
+                                       onChange="this.form.submit()"
+                                       {{ $task->completed ? 'checked' : '' }} name="completed"
+                                >
+                            </label>
+                            <input class="invisible w-0" type="text" value="checkbox" name="checkbox">
 
                         </form>
                     </td>
-                    <td class="px-3 py-1 whitespace-nowrap flex flex-col min-w-1/3">
-                        <span class="">{{ $task->label }}</span>
+                    <td class="px-3 py-1 whitespace-nowrap flex flex-col min-w-1/3" >
+
+
+                    <a href="{{route('tasks.edit',$task->id)}}">
+
+                            <span class="">{{ $task->label }}</span>
+
+
+                    </a>
+
+                        <a href="{{route('tasks.edit',$task->id)}}">
+
                         <span class="text-sm text-zinc-500">{{ $task->description }}</span>
+                        </a>
                     </td>
                     <td class="">
 
@@ -56,10 +69,10 @@
             </tr>
             </tfoot>
         </table>
-{{--        @foreach($tasks as $task)--}}
-{{--            {{$task->label}}--}}
+        {{--        @foreach($tasks as $task)--}}
+        {{--            {{$task->label}}--}}
 
-{{--        @endforeach--}}
+        {{--        @endforeach--}}
     </div>
 
 </x-app-layout>
