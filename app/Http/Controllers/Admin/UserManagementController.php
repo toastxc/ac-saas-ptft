@@ -77,7 +77,7 @@ class UserManagementController extends Controller
         $request->validate([
             'given_name' => ['nullable', 'string', 'max:128'],
             'family_name' => ['nullable', 'string', 'max:128'],
-            'email' => ['nullable', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'email' => ['nullable', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
         ]);
 
         $user = User::find($id);

@@ -57,17 +57,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return Str::of($name)
             ->upper()
             ->explode(' ')
-            ->reduce(fn($carry, $part) => $carry . $part[0]);
+            ->reduce(fn ($carry, $part) => $carry.$part[0]);
     }
 
     public function isSuspended(): bool
     {
-        return !is_null($this->suspended_at);
+        return ! is_null($this->suspended_at);
     }
 
     public function isBanned(): bool
     {
-        return !is_null($this->banned_at);
+        return ! is_null($this->banned_at);
     }
 
     /**

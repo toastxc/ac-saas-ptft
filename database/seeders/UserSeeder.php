@@ -105,7 +105,7 @@ class UserSeeder extends Seeder
         }
 
         // Uncomment the line below to create (10) randomly named users using the User Factory.
-        // User::factory(10)->create();
+        //         User::factory(10)->create();
 
     }
 }

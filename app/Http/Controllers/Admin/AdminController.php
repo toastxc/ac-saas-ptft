@@ -32,7 +32,7 @@ class AdminController extends Controller
         $productCount = 23653;
         $categoryCount = 64;
         $jokeCount = 432;
-        $toDoCount = 4749;  
+        $toDoCount = 4749;
         $bookCount = 5663;
         $carCount = 435663;
         $salesTotal = 397530;

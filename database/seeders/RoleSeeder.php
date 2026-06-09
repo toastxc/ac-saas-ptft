@@ -52,10 +52,10 @@ class RoleSeeder extends Seeder
             }
 
         }
-        dump(
-
-            Role::findByName('admin')->permissions->pluck('name')
-        );
+        //        dump(
+        //
+        //            Role::findByName('admin')->permissions->pluck('name')
+        //        );
 
     }
 }
