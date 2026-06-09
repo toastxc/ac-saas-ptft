@@ -77,7 +77,8 @@
                                                         </button>
                                                         <a
 
-                                                            href="{{ route('admin.users.show', $user) }}">
+{{--                                                            href="{{ route('admin.users.edit', $user) }}"--}}
+                                                        >
 
                                                             <button
                                                                 class="hover:text-white hover:border-white hover:bg-gray-500 transition text-gray-500 border-2 p-2 text-center rounded">

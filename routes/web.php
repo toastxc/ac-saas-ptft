@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
-
 require __DIR__.'/web.static.php';
 
 require __DIR__.'/web.client.php';

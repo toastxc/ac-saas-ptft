@@ -16,14 +16,6 @@ use Illuminate\View\View;
 class RegisteredUserController extends Controller
 {
     /**
-     * Display the registration view.
-     */
-    public function create(): View
-    {
-        return view('auth.register');
-    }
-
-    /**
      * Handle an incoming registration request.
      *
      * password validation: requires minimum length of 20chars for security
@@ -35,7 +27,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'given_name' => ['required', 'string', 'max:128'],
             'family_name' => ['nullable', 'string', 'max:128'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()->min(20)],
         ]);
 
@@ -51,5 +43,13 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(route('dashboard', absolute: false));
+    }
+
+    /**
+     * Display the registration view.
+     */
+    public function create(): View
+    {
+        return view('auth.register');
     }
 }

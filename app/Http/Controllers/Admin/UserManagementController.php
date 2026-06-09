@@ -65,6 +65,8 @@ class UserManagementController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     *  PATCH /admin/users{user} [admin.users.update]
      */
     public function update(Request $request, string $id)
     {
@@ -75,7 +77,7 @@ class UserManagementController extends Controller
         $request->validate([
             'given_name' => ['nullable', 'string', 'max:128'],
             'family_name' => ['nullable', 'string', 'max:128'],
-            'email' => ['nullable', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['nullable', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
         ]);
 
         $user = User::find($id);
@@ -95,39 +97,57 @@ class UserManagementController extends Controller
         return redirect(route('admin.users.show', $user, absolute: false));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Request $request, string $id)
     {
 
+        /*
+         * check to see if current user has user-delete permissions
+         */
         if (Auth::user()->cant('user-delete')) {
-            return redirect(route('admin.users.index', absolute: false));
+            abort(403);
         }
 
         $request->validate([
-            'confirm' => ['nullable', 'string'],
+            'confirm' => ['string', 'max:7', 'min:7'],
         ]);
 
         if ($request->confirm == 'confirm') {
+
+            $target = User::find($id);
+            if ($target == null) {
+
+                abort(404);
+            }
+            //            if ($target->can('user-delete')) {
+            //
+            //
+            //
+            //
+            //            }
+
             User::destroy($id);
 
             return redirect(route('admin.users.index', absolute: false));
 
         } else {
-            $user = User::find($id);
+            //            $user = User::find($id);
 
-            return view('admin.users.destroy', [
-                'user' => $user,
+            return view('admin.users.index', [
+                //                'user' => $user,
             ]);
         }
 
     }
 
-    public function destroy_confirmed(string $id)
+    public function delete(Request $request, string $id)
     {
 
-        return redirect(route('admin.users.index', absolute: false));
+        $user = User::find($id);
+
+        return view('admin.users.destroy', [
+            'user' => $user,
+        ]);
+        //        return redirect(route('admin.users.destroy', $user, absolute: false));
     }
 
     public function role(string $id)

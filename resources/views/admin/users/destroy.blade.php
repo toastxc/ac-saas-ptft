@@ -40,17 +40,12 @@
                                                 </div>
                                             </div>
                                             <form method="POST" class="w-full max-w-sm"
-                                                  action="{{ route('admin.users.destroy', $user) }}">
+                                                  action="{{ route('admin.users.destroy', $user->id) }}">
                                                 @csrf
                                                 @method('delete')
-                                                <x-input-label for="given_name"
-                                                               :value="__('To confirm; type out the word confirm')"/>
-                                                <input id="confirm" type="text"
-                                                       class="border-2 border-red-600 block mt-1 w-full rounded   focus:outline-2 focus:outline-red-500 "
-                                                       name="confirm"
-                                                       autofocus
-                                                />
-                                                <x-input-error :messages="$errors->get('given_name')" class="mt-2"/>
+                                                <x-input-label for="confirm" :value="__('To confirm; type out the word confirm')"/>
+                                                <input id="confirm" type="text" class="border-2 border-red-600 block mt-1 w-full rounded   focus:outline-2 focus:outline-red-500 " name="confirm" autofocus/>
+                                                <x-input-error :messages="$errors->get('confirm')" class="mt-2"/>
 
 
                                                 <div class="flex-col flex gap-1 ">
@@ -63,10 +58,7 @@
                                                         Permanently Delete
                                                     </button>
 
-                                                    <a
-
-                                                        href="{{ route('admin.users.index') }}">
-
+                                                    <a>
                                                         <button type="button"
                                                                 class="hover:text-white  w-1/1 hover:border-white hover:bg-gray-500 transition text-gray-500 border-2 p-2 text-center rounded">
                                                             Cancel

@@ -42,21 +42,6 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'suspended_at' => 'datetime',
-            'banned_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
-
-    /**
      * Return the initials of the current user
      *
      * @return string|null
@@ -72,16 +57,31 @@ class User extends Authenticatable implements MustVerifyEmail
         return Str::of($name)
             ->upper()
             ->explode(' ')
-            ->reduce(fn ($carry, $part) => $carry.$part[0]);
+            ->reduce(fn($carry, $part) => $carry . $part[0]);
     }
 
     public function isSuspended(): bool
     {
-        return ! is_null($this->suspended_at);
+        return !is_null($this->suspended_at);
     }
 
     public function isBanned(): bool
     {
-        return ! is_null($this->banned_at);
+        return !is_null($this->banned_at);
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'suspended_at' => 'datetime',
+            'banned_at' => 'datetime',
+            'password' => 'hashed',
+        ];
     }
 }

@@ -36,18 +36,13 @@
                                 $modal = false;
                             @endphp
                             @foreach($user->getRoleNames() as $role)
-                                <span class="text-xs rounded-full bg-zinc-700 p-0.5 px-2 text-zinc-200" >
+                                <span class="text-xs rounded-full bg-zinc-700 p-0.5 px-2 text-zinc-200">
                                 {{$role}}
-
-                            </span>
+                                </span>
                             @endforeach
-
-
-
 
                         </td>
                         <td class="px-3 py-1 whitespace-nowrap w-1/6">
-
 
                             @if(empty($user->email_verified_at))
                                 <x-chip color="warning" message="Unverified"></x-chip>
@@ -61,11 +56,10 @@
 
                         </td>
                         <td class="px-3 py-1 whitespace-nowrap w-1/8">
-                            <form action="{{ route('admin.users.destroy', [$user, false]) }}"
+                            <form action="{{ route('admin.users.delete', $user) }}"
                                   method="post"
                                   class="grid grid-cols-3 gap-2 w-full">
                                 @csrf
-                                @method('delete')
 
                                 <a href="{{ route('admin.users.show', $user) }}"
                                    class="hover:text-green-500 transition border p-2 text-center rounded">
