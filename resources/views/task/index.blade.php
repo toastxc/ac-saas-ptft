@@ -1,3 +1,30 @@
+<span hidden class="bg-red-100 px-2.5 py-0.5 text-red-700"></span>
+<span hidden class="bg-orange-100 px-2.5 py-0.5 text-orange-700"></span>
+<span hidden class="bg-amber-100 px-2.5 py-0.5 text-amber-700"></span>
+<span hidden class="bg-yellow-100 px-2.5 py-0.5 text-yellow-700"></span>
+<span hidden class="bg-lime-100 px-2.5 py-0.5 text-lime-700"></span>
+<span hidden class="bg-green-100 px-2.5 py-0.5 text-green-700"></span>
+<span hidden class="bg-emerald-100 px-2.5 py-0.5 text-emerald-700"></span>
+<span hidden class="bg-teal-100 px-2.5 py-0.5 text-teal-700"></span>
+<span hidden class="bg-cyan-100 px-2.5 py-0.5 text-cyan-700"></span>
+<span hidden class="bg-sky-100 px-2.5 py-0.5 text-sky-700"></span>
+<span hidden class="bg-blue-100 px-2.5 py-0.5 text-blue-700"></span>
+<span hidden class="bg-indigo-100 px-2.5 py-0.5 text-indigo-700"></span>
+<span hidden class="bg-violet-100 px-2.5 py-0.5 text-violet-700"></span>
+<span hidden class="bg-purple-100 px-2.5 py-0.5 text-purple-700"></span>
+<span hidden class="bg-fuchsia-100 px-2.5 py-0.5 text-fuchsia-700"></span>
+<span hidden class="bg-pink-100 px-2.5 py-0.5 text-pink-700"></span>
+<span hidden class="bg-rose-100 px-2.5 py-0.5 text-rose-700"></span>
+<span hidden class="bg-slate-100 px-2.5 py-0.5 text-slate-700"></span>
+<span hidden class="bg-gray-100 px-2.5 py-0.5 text-gray-700"></span>
+<span hidden class="bg-zinc-100 px-2.5 py-0.5 text-zinc-700"></span>
+<span hidden class="bg-neutral-100 px-2.5 py-0.5 text-neutral-700"></span>
+<span hidden class="bg-stone-100 px-2.5 py-0.5 text-stone-700"></span>
+<span hidden class="bg-taupe-100 px-2.5 py-0.5 text-taupe-700"></span>
+<span hidden class="bg-mauve-100 px-2.5 py-0.5 text-mauve-700"></span>
+<span hidden class="bg-mist-100 px-2.5 py-0.5 text-mist-700"></span>
+<span hidden class="bg-olive-100 px-2.5 py-0.5 text-olive-700"></span>
+
 <x-app-layout>
     <br>
     <div class="flex justify-center items-center">
@@ -38,22 +65,40 @@
 
                         </form>
                     </td>
-                    <td class="px-3 py-1 whitespace-nowrap flex flex-col min-w-1/3" >
+                    <td class="px-3 py-1 whitespace-nowrap flex flex-col min-w-1/3">
 
 
-                    <a href="{{route('tasks.edit',$task->id)}}">
+                        <a href="{{route('tasks.edit',$task->id)}}">
 
                             <span class="">{{ $task->label }}</span>
 
 
-                    </a>
+                        </a>
 
                         <a href="{{route('tasks.edit',$task->id)}}">
 
-                        <span class="text-sm text-zinc-500">{{ $task->description }}</span>
+                            <span class="text-sm text-zinc-500">{{ $task->description }}</span>
                         </a>
                     </td>
                     <td class="">
+                        @if($task->badge != null)
+                            @php
+                            $badge = $badges->find($task->badge)
+                            @endphp
+
+                            <span
+                                class="inline-flex items-center justify-center rounded-full bg-{{$badge->color}}-100 px-2.5 py-0.5 text-{{$badge->color}}-700">
+
+                        <p class="text-sm whitespace-nowrap">
+
+                           {{$badge->label}}
+                        </p>
+                        </span>
+                        @endif
+
+
+
+
 
                     </td>
 

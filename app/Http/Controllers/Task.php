@@ -18,8 +18,9 @@ class Task extends Controller
         $id = Auth::id();
 
         $tasks = DB::table('tasks')->where('user', $id)->limit(20)->get();
+        $badges = Badge::all();
 
-        return view('task.index', ['tasks' => $tasks]);
+        return view('task.index', ['tasks' => $tasks, 'badges' => $badges]);
     }
 
     /**

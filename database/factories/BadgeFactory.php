@@ -17,9 +17,16 @@ class BadgeFactory extends Factory
      */
     public function definition(): array
     {
+
+        $colors = [
+            'red', 'orange', 'amber', 'yellow', 'lime', 'green', 'emerald', 'teal', 'cyan', 'sky', 'blue', 'indigo',
+            'violet', 'purple', 'fuchsia', 'pink', 'rose', 'slate', 'gray', 'zinc', 'neutral', 'stone', 'taupe',
+            'mauve', 'mist', 'olive',
+        ];
+
         return [
             'label' => fake()->words(1, true),
-            'color' => fake()->colorName(),
+            'color' => $colors[fake()->numberBetween(0, count($colors))],
         ];
     }
 }
