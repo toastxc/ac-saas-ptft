@@ -26,7 +26,7 @@ class BadgeFactory extends Factory
 
         return [
             'label' => fake()->unique()->word(),
-            'color' => $colors[fake()->unique()->numberBetween(0, count($colors)-1)],
+            'color' => $colors[fake()->unique()->numberBetween(0, count($colors) - 1)],
         ];
     }
 }

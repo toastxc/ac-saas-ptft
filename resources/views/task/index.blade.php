@@ -83,7 +83,7 @@
                     <td class="">
                         @if($task->badge != null)
                             @php
-                            $badge = $badges->find($task->badge)
+                                $badge = $badges->find($task->badge)
                             @endphp
 
                             <span
@@ -97,23 +97,37 @@
                         @endif
 
 
-
-
-
                     </td>
 
 
                 </tr>
             @endforeach
 
+            <tr class="*:text-zinc-900 *:first:font-medium hover:bg-white">
+
+                <td class="w-full  col-span-2 justify-center justify-self-center mx-auto  text-white text-center text-lg">
+
+                </td>
+                <td class="w-full  col-span-2 justify-center justify-self-center mx-auto  text-white text-center text-lg">
+                    <a href="{{ route('tasks.create') }}">+</a>
+
+                </td>
+            </tr>
+
             </tbody>
 
             <tfoot>
+
             <tr>
 
+
             </tr>
+
             </tfoot>
+
         </table>
+
+
         {{--        @foreach($tasks as $task)--}}
         {{--            {{$task->label}}--}}
 

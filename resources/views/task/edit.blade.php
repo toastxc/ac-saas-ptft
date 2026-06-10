@@ -49,7 +49,7 @@
                     </select>
                 </label>
 
-                <div class="md:w-2/3 my-3">
+                <div class="my-3">
 
                     <button
                         class="hover:text-white hover:border-white hover:bg-gray-500 transition text-gray-500 border-2 p-2 text-center rounded"
@@ -66,9 +66,33 @@
                     </a>
 
 
+
+
                 </div>
 
             </form>
+            <a
+            >
+
+            </a>
+
+
+            <form action="{{ route('tasks.destroy',$task->id) }}"
+                  method="post"
+                  class="">
+                @csrf
+                @method('delete')
+
+                <button type="submit"
+                        class="hover:text-white hover:border-white hover:bg-red-500 transition text-red-500 border-2 p-2 text-center rounded">
+                    Permanently Delete
+                </button>
+
+
+
+            </form>
+
+
         </div>
     </div>
 

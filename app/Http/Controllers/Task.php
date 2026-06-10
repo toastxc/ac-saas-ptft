@@ -28,7 +28,15 @@ class Task extends Controller
      */
     public function create()
     {
-        //
+
+        $task = new \App\Models\Task;
+        $task->label = 'new task';
+        $task->user = Auth::id();
+        $task->completed = false;
+        //        dd($task->created_at);
+        $task->save();
+
+        return redirect(route('tasks.index', absolute: false));
     }
 
     /**
@@ -36,7 +44,8 @@ class Task extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        return redirect(route('tasks.index', absolute: false));
     }
 
     /**
@@ -44,7 +53,8 @@ class Task extends Controller
      */
     public function show(string $id)
     {
-        //
+
+        return redirect(route('tasks.index', absolute: false));
     }
 
     /**
@@ -112,6 +122,14 @@ class Task extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $task = \App\Models\Task::find($id);
+
+        if ($task != null) {
+            \App\Models\Task::destroy($id);
+        } else {
+            abort(404);
+        }
+
+        return redirect(route('tasks.index', absolute: false));
     }
 }

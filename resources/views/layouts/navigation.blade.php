@@ -26,11 +26,17 @@
                         <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')">
                             {{ __('Admin') }}
                         </x-nav-link>
+
+
+
                     @endauth
+
 
                     <x-nav-link :href="route('web.static.about')" :active="request()->routeIs('web.static.about')">
                         {{ __('About') }}
                     </x-nav-link>
+
+
 
                 </div>
 
