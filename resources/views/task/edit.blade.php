@@ -40,10 +40,10 @@
                     type="submit">
                     Save
                 </button>
-                <a
+                <a href="{{route('tasks.index')}}"
                 >
 
-                    <button
+                    <button type="button"
                         class="hover:text-white hover:border-white hover:bg-gray-500 transition text-gray-500 border-2 p-2 text-center rounded">
                         Cancel
                     </button>
