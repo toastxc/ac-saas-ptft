@@ -31,7 +31,18 @@
             >
             <x-input-error :messages="$errors->get('completed')" class="mt-2"/>
 
+            <br>
+            <label for="Headline">
+                <span class="text-sm font-medium text-gray-700"> Badge </span>
 
+                <select name="badge" id="badge" class="mt-0.5 w-full rounded border-gray-300 shadow-sm sm:text-sm">
+                    <option value="">None</option>
+                    @foreach($badges as $badge)
+                    <option value="{{$badge->id}}">{{$badge->label}}</option>
+                    @endforeach
+
+                </select>
+            </label>
 
             <div class="md:w-2/3 my-3">
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Badge;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -52,7 +53,9 @@ class Task extends Controller
     {
         $task = \App\Models\Task::find($id);
 
-        return view('task.edit', ['task' => $task]);
+        $badges = Badge::all();
+
+        return view('task.edit', ['task' => $task, 'badges' => $badges]);
     }
 
     /**
@@ -84,6 +87,7 @@ class Task extends Controller
                 'family_name' => ['string', 'max:128'],
                 // completed or null
                 'completed' => ['nullable', 'string', 'min:9', 'max:9'],
+                'badge' => ['int', 'nullable'],
             ]);
 
             if ($request->completed) {
