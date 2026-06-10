@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
                 RoleSeeder::class,
                 UserSeeder::class,
                 TaskSeeder::class,
+                BadgeSeeder::class,
                 // Add further seeder classes here
             ]
         );
