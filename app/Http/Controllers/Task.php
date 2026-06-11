@@ -65,10 +65,7 @@ class Task extends Controller
         if ($task->user != Auth::id()) {
             abort(403);
         }
-
-        $badges = Badge::all();
-
-        return view('task.edit', ['task' => $task, 'badges' => $badges]);
+        return view('task.edit', ['task' => $task, 'badges' => Badge::all()]);
     }
 
     /**
@@ -80,8 +77,6 @@ class Task extends Controller
         if ($task->user != Auth::id()) {
             abort(403);
         }
-
-
 
 
         /*
