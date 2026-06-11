@@ -94,7 +94,7 @@ class Task extends Controller
 
             $request->validate([
                 'label' => ['string', 'max:32'],
-                'family_name' => ['string', 'max:128'],
+                'description' => ['string', 'max:128'],
                 // completed or null
                 'completed' => ['nullable', 'string', 'min:9', 'max:9'],
                 'badge' => ['int', 'nullable'],
