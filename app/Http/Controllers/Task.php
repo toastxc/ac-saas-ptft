@@ -61,10 +61,7 @@ class Task extends Controller
      */
     public function edit(string $id)
     {
-        $task = \App\Models\Task::find($id);
-        if ($task->user != Auth::id()) {
-            abort(403);
-        }
+        $task = $this->bouncer($id);
 
         return view('task.edit', ['task' => $task, 'badges' => Badge::all()]);
     }
@@ -74,11 +71,8 @@ class Task extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $task = \App\Models\Task::find($id);
-        if ($task->user != Auth::id()) {
-            abort(403);
-        }
 
+        $task = $this->bouncer($id);
         /*
          * checkboxes are null by default
          *
@@ -111,20 +105,28 @@ class Task extends Controller
         return redirect(route('tasks.index', absolute: false));
     }
 
+    public function bouncer(string $id)
+    {
+        $task = \App\Models\Task::find($id);
+        if ($task == null) {
+            abort(404);
+        }
+        if ($task->user != Auth::id()) {
+            abort(403);
+        }
+
+        return $task;
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
 
-        $user = \App\Models\Task::find(Auth::id());
-        $task = \App\Models\Task::find($id);
+        $this->bouncer($id);
 
-        if ($task != null) {
-            \App\Models\Task::destroy($id);
-        } else {
-            abort(404);
-        }
+        \App\Models\Task::destroy($id);
 
         return redirect(route('tasks.index', absolute: false));
     }
