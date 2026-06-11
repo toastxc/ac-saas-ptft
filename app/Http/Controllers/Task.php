@@ -65,6 +65,7 @@ class Task extends Controller
         if ($task->user != Auth::id()) {
             abort(403);
         }
+
         return view('task.edit', ['task' => $task, 'badges' => Badge::all()]);
     }
 
@@ -77,7 +78,6 @@ class Task extends Controller
         if ($task->user != Auth::id()) {
             abort(403);
         }
-
 
         /*
          * checkboxes are null by default
