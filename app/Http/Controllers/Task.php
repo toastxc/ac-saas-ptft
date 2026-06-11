@@ -62,6 +62,9 @@ class Task extends Controller
     public function edit(string $id)
     {
         $task = \App\Models\Task::find($id);
+        if ($task->user != Auth::id()) {
+            abort(403);
+        }
 
         $badges = Badge::all();
 
@@ -73,8 +76,13 @@ class Task extends Controller
      */
     public function update(Request $request, string $id)
     {
-
         $task = \App\Models\Task::find($id);
+        if ($task->user != Auth::id()) {
+            abort(403);
+        }
+
+
+
 
         /*
          * checkboxes are null by default
@@ -94,7 +102,7 @@ class Task extends Controller
 
             $request->validate([
                 'label' => ['string', 'max:32'],
-                'description' => ['string', 'max:128'],
+                'description' => ['string', 'max:128', 'nullable'],
                 // completed or null
                 'completed' => ['nullable', 'string', 'min:9', 'max:9'],
                 'badge' => ['int', 'nullable'],
