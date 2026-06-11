@@ -28,7 +28,6 @@ class Task extends Controller
      */
     public function create()
     {
-
         $task = new \App\Models\Task;
         $task->label = 'new task';
         $task->user = Auth::id();
@@ -82,12 +81,12 @@ class Task extends Controller
          *
          * 'checkbox' specifies if the form updates the checkbox or not
          */
+
         if (isset($request->checkbox)) {
-            if ($request->completed) {
-                $task->completed = true;
-            } else {
-                $task->completed = false;
-            }
+            $request->validate([
+                'completed' => ['nullable', 'string', 'min:9', 'max:9'],
+            ]);
+            $task->completed = $request->completed != null;
             /*
              * assumes main edit page
              */
@@ -101,20 +100,12 @@ class Task extends Controller
                 'badge' => ['int', 'nullable'],
             ]);
 
-            if ($request->completed) {
-                $task->completed = true;
-            } else {
-                $task->completed = false;
-            }
-
             $task->update($request->all());
 
         }
-
         $task->save();
 
         return redirect(route('tasks.index', absolute: false));
-
     }
 
     /**
@@ -122,6 +113,8 @@ class Task extends Controller
      */
     public function destroy(string $id)
     {
+
+        $user = \App\Models\Task::find(Auth::id());
         $task = \App\Models\Task::find($id);
 
         if ($task != null) {
