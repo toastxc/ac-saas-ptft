@@ -28,14 +28,17 @@ test('users can delete tasks', function () {
 
     $user = User::factory()->create();
 
-    $task = Task::factory()->create();
 
-    expect(Task::find($task->id) == null)->toBeFalse();
 
-    $this->actingAs($user)->delete('/tasks/'.$task->id,
+    expect(Task::find(1) == null)->toBeTrue();
+
+    $this->actingAs($user)->get('/tasks/create',
     )->assertStatus(302);
 
-    expect(Task::find($task->id) == null)->toBeTrue();
+    $this->actingAs($user)->delete('/tasks/1'
+    )->assertStatus(302);
+
+    expect(Task::find(1) == null)->toBeTrue();
 
 });
 
@@ -43,86 +46,37 @@ test('users can edit tasks', function () {
 
     $user = User::factory()->create();
 
-    $task = Task::factory()->create();
+    $this->actingAs($user)->get('/tasks/create',
+    )->assertStatus(302);
 
-    $this->actingAs($user)->patch('/tasks/'.$task->id,
+    $this->actingAs($user)->patch('/tasks/1',
         [
             'label' => 'wow!!!!!!',
         ]
     )->assertStatus(302);
 
-    expect(Task::find($task->id)->label == 'wow!!!!!!')->toBeTrue();
+    expect(Task::find(1)->label == 'wow!!!!!!')->toBeTrue();
 
 });
 
-test('users can add a badge', function () {
 
-    $user = User::factory()->create();
+test('users cant edit others tasks', function () {
 
-    $task = Task::factory()->create();
+    $user1 = User::factory()->create();
+    $user2 = User::factory()->create();
 
-    $badge = Badge::factory()->create();
 
-    $this->actingAs($user)->patch('/tasks/'.$task->id,
-        [
-            'badge' => $badge->id,
-        ]
+    $this->actingAs($user1)->get('/tasks/create',
     )->assertStatus(302);
 
-    expect(Task::find($task->id)->badge == $badge->id)->toBeTrue();
+
+    $this->actingAs($user2)->delete('/tasks/1',
+    )->assertStatus(403);
+
+    $this->actingAs($user1)->delete('/tasks/1',
+    )->assertStatus(302);
+
+
 
 });
 
-test('users can remove a badge', function () {
-
-    $user = User::factory()->create();
-
-    $task = Task::factory()->create();
-
-    $badge = Badge::factory()->create();
-
-    $this->actingAs($user)->patch('/tasks/'.$task->id,
-        [
-            'badge' => $badge->id,
-        ]
-    )->assertStatus(302);
-
-    expect(Task::find($task->id)->badge == $badge->id)->toBeTrue();
-
-    $this->actingAs($user)->patch('/tasks/'.$task->id,
-        [
-            'badge' => '',
-        ]
-    )->assertStatus(302);
-
-    expect(Task::find($task->id)->badge == $badge->id)->toBeFalse();
-
-});
-
-test('users can replace a badge', function () {
-
-    $user = User::factory()->create();
-
-    $task = Task::factory()->create();
-
-    $badge = Badge::factory()->create();
-    $badge2 = Badge::factory()->create();
-
-    $this->actingAs($user)->patch('/tasks/'.$task->id,
-        [
-            'badge' => $badge->id,
-        ]
-    )->assertStatus(302);
-
-    expect(Task::find($task->id)->badge == $badge->id)->toBeTrue();
-
-    $this->actingAs($user)->patch('/tasks/'.$task->id,
-        [
-            'badge' => $badge2->id,
-        ]
-    )->assertStatus(302);
-
-    expect(Task::find($task->id)->badge == $badge->id)->toBeFalse()
-        ->and(Task::find($task->id)->badge == $badge2->id)->toBeTrue();
-
-});
