@@ -20,7 +20,7 @@ class TaskFactory extends Factory
         return [
             'label' => fake()->words(1, true),
             'description' => fake()->words(5, true),
-            'user' => 100,
+            'user_id' => 100,
             'completed' => fake()->boolean(),
         ];
     }

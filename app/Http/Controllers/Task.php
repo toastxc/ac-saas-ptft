@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Badge;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,10 +16,13 @@ class Task extends Controller
     public function index()
     {
 
-        $id = Auth::id();
 
-        $tasks = DB::table('tasks')->where('user', $id)->limit(20)->get();
+        //  $tasks = DB::table('tasks')->where('user', $id)->limit(20)->get();
+        $tasks = User::find(Auth::id())->tasks;
         $badges = Badge::all();
+
+
+
 
         return view('task.index', ['tasks' => $tasks, 'badges' => $badges]);
     }
@@ -72,6 +76,7 @@ class Task extends Controller
     public function update(Request $request, string $id)
     {
 
+
         $task = $this->bouncer($id);
         /*
          * checkboxes are null by default
@@ -100,7 +105,10 @@ class Task extends Controller
             $task->update($request->all());
 
         }
-        $task->save();
+
+
+
+
 
         return redirect(route('tasks.index', absolute: false));
     }
