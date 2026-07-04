@@ -23,21 +23,23 @@
                             {{ __('Dashboard') }}
                         </x-nav-link>
 
-                        <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')">
-                            {{ __('Admin') }}
-                        </x-nav-link>
+
 
                         <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.*')">
                             {{ __('Tasks') }}
                         </x-nav-link>
 
+                        @if(Auth::user()->hasRole('admin|super-admin'))
+                            <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')">
+                                {{ __('Admin') }}
+                            </x-nav-link>
+                        @endif
                     @endauth
 
 
                     <x-nav-link :href="route('web.static.about')" :active="request()->routeIs('web.static.about')">
                         {{ __('About') }}
                     </x-nav-link>
-
 
 
                 </div>
