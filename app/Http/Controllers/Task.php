@@ -6,7 +6,6 @@ use App\Models\Badge;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class Task extends Controller
 {
@@ -16,13 +15,8 @@ class Task extends Controller
     public function index()
     {
 
-
-        //  $tasks = DB::table('tasks')->where('user', $id)->limit(20)->get();
         $tasks = User::find(Auth::id())->tasks;
         $badges = Badge::all();
-
-
-
 
         return view('task.index', ['tasks' => $tasks, 'badges' => $badges]);
     }
@@ -34,9 +28,8 @@ class Task extends Controller
     {
         $task = new \App\Models\Task;
         $task->label = 'new task';
-        $task->user = Auth::id();
+        $task->user_id = Auth::id();
         $task->completed = false;
-        //        dd($task->created_at);
         $task->save();
 
         return redirect(route('tasks.index', absolute: false));
@@ -76,7 +69,6 @@ class Task extends Controller
     public function update(Request $request, string $id)
     {
 
-
         $task = $this->bouncer($id);
         /*
          * checkboxes are null by default
@@ -106,10 +98,6 @@ class Task extends Controller
 
         }
 
-
-
-
-
         return redirect(route('tasks.index', absolute: false));
     }
 
@@ -119,7 +107,7 @@ class Task extends Controller
         if ($task == null) {
             abort(404);
         }
-        if ($task->user != Auth::id()) {
+        if ($task->user_id != Auth::id()) {
             abort(403);
         }
 
