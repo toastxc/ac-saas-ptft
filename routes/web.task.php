@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\Task;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
 
-    Route::resource('tasks', Task::class);
-    Route::get('/task', [Task::class, 'index'])
+    Route::resource('tasks', TaskController::class);
+    Route::get('/task', [TaskController::class, 'index'])
         ->name('task');
 });
