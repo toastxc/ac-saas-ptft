@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Badge;
 use App\Models\Task;
 use App\Models\User;
 
@@ -27,8 +26,6 @@ test('users can create tasks', function () {
 test('users can delete tasks', function () {
 
     $user = User::factory()->create();
-
-
 
     expect(Task::find(1) == null)->toBeTrue();
 
@@ -59,16 +56,13 @@ test('users can edit tasks', function () {
 
 });
 
-
 test('users cant edit others tasks', function () {
 
     $user1 = User::factory()->create();
     $user2 = User::factory()->create();
 
-
     $this->actingAs($user1)->get('/tasks/create',
     )->assertStatus(302);
-
 
     $this->actingAs($user2)->delete('/tasks/1',
     )->assertStatus(403);
@@ -76,7 +70,4 @@ test('users cant edit others tasks', function () {
     $this->actingAs($user1)->delete('/tasks/1',
     )->assertStatus(302);
 
-
-
 });
-
