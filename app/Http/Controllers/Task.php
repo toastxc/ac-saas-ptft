@@ -31,8 +31,7 @@ class Task extends Controller
         $task->user_id = Auth::id();
         $task->completed = false;
         $task->save();
-
-        return redirect(route('tasks.index', absolute: false));
+        return redirect(route('tasks.edit', ['task' => $task], absolute: false));
     }
 
     /**
