@@ -79,7 +79,7 @@ class Task extends Controller
             $request->validate([
                 'completed' => ['nullable', 'string', 'min:9', 'max:9'],
             ]);
-            $task->completed = $request->completed != null;
+            $task->completed = $request->completed == "completed";
             /*
              * assumes main edit page
              */
@@ -93,10 +93,11 @@ class Task extends Controller
                 'badge' => ['int', 'nullable'],
             ]);
 
-            $task->update($request->all());
+
 
         }
 
+        $task->update($request->all());
         return redirect(route('tasks.index', absolute: false));
     }
 
