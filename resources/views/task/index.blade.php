@@ -25,6 +25,7 @@
 <span hidden class="bg-mauve-100 px-2.5 py-0.5 text-mauve-700"></span>
 <span hidden class="bg-mist-100 px-2.5 py-0.5 text-mist-700"></span>
 <span hidden class="bg-olive-100 px-2.5 py-0.5 text-olive-700"></span>
+<span hidden class="text-red-500">aaaaaaaaaaaa</span>
 
 <x-app-layout>
     <br>
@@ -108,18 +109,33 @@
 
                     <td>
                         @if($task->due != null)
+
                             @php
                                 $date = Carbon::parse( $task->due);
+                                $now = Carbon::now();
+                                   if($now->isSameDay($date)) {
+                                      $text = "today";
+                                   }else   if($date->isNextDay()) {
+                                       $text = "tomorrow";
+                                   }else    if($date->isYesterday()) {
+                                       $text = "yesterday";
+
+                                       }else if (!$now->isSameYear($date)) {
+                                       $text = "$date->day/$date->month/$date->year";
+                                   }else {
+                                       $text ="$date->day/$date->month";
+                                   }
+
+                                   $timeclass = "";
+                                   if ($date->isBefore($now)) {
+                                       $timeclass = "text-red-500";
+                                   }
                             @endphp
-                            @if(Carbon::now()->isSameDay($date))
-                                Today
-                            @elseif(Carbon::now()->isAfter($date))
-                                <p class="text-red-600">
-                                    {{$date->day}}/{{$date->month}}
-                                </p>
-                            @else
-                            {{$date->day}}/{{$date->month}}
-                            @endif
+
+                            <p class="{{$timeclass}}">
+                                {{$text}}
+                            </p>
+
                         @endif
                     </td>
 
