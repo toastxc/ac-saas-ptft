@@ -36,6 +36,7 @@
                 <th class="px-1 py-2 whitespace-nowrap">Status</th>
                 <th class="px-3 py-2 whitespace-nowrap">Task</th>
                 <th class="px-3 py-2 whitespace-nowrap">Badges</th>
+                <th class="px-3 py-2 whitespace-nowrap">Due</th>
             </tr>
             </thead>
 
@@ -48,11 +49,11 @@
 
                 <tr class="*:text-zinc-900 *:first:font-medium hover:bg-white">
 
-                    <td class="w-full  col-span-2 justify-center justify-self-center mx-auto  text-white text-center text-lg">
+                    <td class="col-span-5 justify-center justify-self-center mx-auto  text-white text-center text-lg">
 
                         <form action="{{ route('tasks.update',$task->id) }}"
                               method="post"
-                              class="grid grid-cols-3 gap-2 w-full">
+                              class="">
                             @csrf
                             @method('patch')
 
@@ -101,6 +102,16 @@
                         @endif
 
 
+                    </td>
+
+
+                    <td>
+                        @if($task->due != null)
+                            @php
+                                $date = \Carbon\Carbon::parse( $task->due);
+                            @endphp
+                            {{$date->day}}/{{$date->month}}
+                        @endif
                     </td>
 
 
