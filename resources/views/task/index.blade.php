@@ -40,6 +40,10 @@
             </thead>
 
             <tbody class="divide-y divide-zinc-200">
+            <a href="{{ route('tasks.create') }}"
+               class="fixed bottom-6 right-6 w-14 h-14 bg-green-600 text-white rounded-full shadow-lg hover:shadow-2xl hover:scale-110 transition-all duration-200 flex items-center justify-center z-50">
+                <i class="fa-solid fa-plus"></i>
+            </a>
             @foreach($tasks as $task)
 
                 <tr class="*:text-zinc-900 *:first:font-medium hover:bg-white">
@@ -103,16 +107,6 @@
                 </tr>
             @endforeach
 
-            <tr class="*:text-zinc-900 *:first:font-medium hover:bg-white">
-
-                <td class="w-full  col-span-2 justify-center justify-self-center mx-auto  text-white text-center text-lg">
-
-                </td>
-                <td class="w-full  col-span-2 justify-center justify-self-center mx-auto  text-white text-center text-lg">
-                    <a href="{{ route('tasks.create') }}">+</a>
-
-                </td>
-            </tr>
 
             </tbody>
 
@@ -126,12 +120,6 @@
             </tfoot>
 
         </table>
-
-
-        {{--        @foreach($tasks as $task)--}}
-        {{--            {{$task->label}}--}}
-
-        {{--        @endforeach--}}
     </div>
 
 </x-app-layout>
