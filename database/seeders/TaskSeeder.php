@@ -16,7 +16,7 @@ class TaskSeeder extends Seeder
         $tasks = [
             [
                 'label' => 'make quinoa',
-                'due' => fake()->date(),
+                'due' => fake()->date('1984-3-5'),
                 'badge' => 2,
             ],
             [
@@ -28,6 +28,11 @@ class TaskSeeder extends Seeder
                 'label' => 'redesign website',
                 'due' => null,
                 'badge' => 3,
+            ],
+            [
+                'label' => 'visit library',
+                'due' => fake()->date('2026-7-4'),
+                'badge' => 2,
             ],
 
         ];
