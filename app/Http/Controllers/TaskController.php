@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Badge;
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,11 +27,12 @@ class TaskController extends Controller
      */
     public function create()
     {
-        $task = new \App\Models\Task;
+        $task = new Task;
         $task->label = 'new task';
         $task->user_id = Auth::id();
         $task->completed = false;
         $task->save();
+
         return redirect(route('tasks.edit', ['task' => $task], absolute: false));
     }
 
@@ -69,17 +71,12 @@ class TaskController extends Controller
     {
 
         $task = $this->bouncer($id);
-        /*
-         * checkboxes are null by default
-         *
-         * 'checkbox' specifies if the form updates the checkbox or not
-         */
 
         if (isset($request->checkbox)) {
             $request->validate([
                 'completed' => ['nullable', 'string', 'min:9', 'max:9'],
             ]);
-            $task->completed = $request->completed == "completed";
+            $task->completed = $request->completed == 'completed';
             /*
              * assumes main edit page
              */
@@ -91,19 +88,22 @@ class TaskController extends Controller
                 // completed or null
                 'completed' => ['nullable', 'string', 'min:9', 'max:9'],
                 'badge' => ['int', 'nullable'],
+                'due' => ['date', 'nullable'],
             ]);
 
-
-
         }
-
+        $task->due = $request->due;
         $task->update($request->all());
+
+
+
+
         return redirect(route('tasks.index', absolute: false));
     }
 
     public function bouncer(string $id)
     {
-        $task = \App\Models\Task::find($id);
+        $task = Task::find($id);
         if ($task == null) {
             abort(404);
         }
@@ -122,7 +122,7 @@ class TaskController extends Controller
 
         $this->bouncer($id);
 
-        \App\Models\Task::destroy($id);
+        Task::destroy($id);
 
         return redirect(route('tasks.index', absolute: false));
     }
