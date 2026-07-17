@@ -12,6 +12,21 @@ class BadgeSeeder extends Seeder
      */
     public function run(): void
     {
-        Badge::factory(10)->create();
+        /* Eisenhower Matrix
+         * https://asana.com/resources/eisenhower-matrix
+         */
+        $badges= [
+          ['Important Urgent', 'green'],
+          ['Important Unurgent', 'yellow'],
+          ['Unimportant Urgent', 'blue'],
+          ['Unimportant Unurgent', 'red' ],
+        ];
+
+        foreach ($badges as $badge) {
+             Badge::updateOrCreate(
+                ['label' => $badge[0]],
+                ['color' => $badge[1]],
+            );
+        }
     }
 }
