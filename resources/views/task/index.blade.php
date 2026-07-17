@@ -110,11 +110,13 @@
                         @if($task->due != null)
                             @php
                                 $date = Carbon::parse( $task->due);
-                                $now = Carbon::parse(Carbon::now())->isSameDay($date);
-
                             @endphp
-                            @if($now)
+                            @if(Carbon::now()->isSameDay($date))
                                 Today
+                            @elseif(Carbon::now()->isAfter($date))
+                                <p class="text-red-600">
+                                    {{$date->day}}/{{$date->month}}
+                                </p>
                             @else
                             {{$date->day}}/{{$date->month}}
                             @endif
