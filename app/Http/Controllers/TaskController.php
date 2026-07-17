@@ -90,9 +90,9 @@ class TaskController extends Controller
                 'badge' => ['int', 'nullable'],
                 'due' => ['date', 'nullable'],
             ]);
-
+            $task->due = $request->due;
         }
-        $task->due = $request->due;
+
         $task->update($request->all());
 
 
