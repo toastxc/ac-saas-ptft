@@ -32,7 +32,7 @@
                 <x-input-error :messages="$errors->get('completed')" class="mt-2"/>
 
                 <br>
-                <label for="Headline">
+                <label for="badge">
                     <span class="text-sm font-medium text-gray-700"> Badge </span>
 
                     <select name="badge" id="badge" class="mt-0.5 w-full rounded border-gray-300 shadow-sm sm:text-sm">
@@ -47,6 +47,12 @@
                         @endforeach
 
                     </select>
+                </label>
+
+                <label for="due">
+                    <span class="text-sm font-medium text-gray-700"> Due </span>
+                    <br>
+                    <input type="date" id="due" name="due" value="{{$task->due}}">
                 </label>
 
                 <div class="my-3">
