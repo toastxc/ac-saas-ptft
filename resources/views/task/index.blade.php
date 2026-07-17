@@ -1,3 +1,4 @@
+@php use Carbon\Carbon; @endphp
 <span hidden class="bg-red-100 px-2.5 py-0.5 text-red-700"></span>
 <span hidden class="bg-orange-100 px-2.5 py-0.5 text-orange-700"></span>
 <span hidden class="bg-amber-100 px-2.5 py-0.5 text-amber-700"></span>
@@ -108,9 +109,15 @@
                     <td>
                         @if($task->due != null)
                             @php
-                                $date = \Carbon\Carbon::parse( $task->due);
+                                $date = Carbon::parse( $task->due);
+                                $now = Carbon::parse(Carbon::now())->isSameDay($date);
+
                             @endphp
+                            @if($now)
+                                Today
+                            @else
                             {{$date->day}}/{{$date->month}}
+                            @endif
                         @endif
                     </td>
 
