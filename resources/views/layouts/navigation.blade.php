@@ -12,9 +12,13 @@
 
                 <!-- Navigation Links -->
 
+                @guest
+
+
                 <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                     {{ __('Home') }}
                 </x-nav-link>
+                @endguest
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
 
 
@@ -43,6 +47,7 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6 gap-4">
+
 
                 @auth
 
