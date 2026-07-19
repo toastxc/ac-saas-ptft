@@ -36,7 +36,7 @@
                     <span class="text-sm font-medium text-gray-700"> Badge </span>
 
                     <select name="badge" id="badge" class="mt-0.5 w-full rounded border-gray-300 shadow-sm sm:text-sm">
-                        <option value="">None</option>
+                       
                         @foreach($badges as $badge)
                             @if($task->badge == $badge->id)
                                 <option value="{{$badge->id}}" selected="selected">{{$badge->label}}     </option>
