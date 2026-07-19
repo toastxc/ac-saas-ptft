@@ -23,62 +23,38 @@
                         <div class="shadow rounded-lg p-2 pb-3">
                             <div class="mt-4 flex items-center justify-between gap-4">
                                 <div>
-                                    <h3 class="text-lg/tight font-semibold text-zinc-900">Student's Name</h3>
-                                    <p class="mt-0.5 text-sm text-zinc-700">Lead Developer</p>
+                                    <h3 class="text-lg/tight font-semibold text-zinc-900">Ava Collett</h3>
+                                    <p class="mt-0.5 text-sm text-zinc-700">Developer, Student</p>
                                 </div>
 
-                                <a href="https://github.com/" target="_blank" rel="noreferrer"
+                                <a href="https://github.com/toastxc" target="_blank" rel="noreferrer"
                                    class="text-github-500 transition-color hover:text-github-800">
-                                    <i class="fa-brands fa-github text-4xl"></i>
+                                    <img class=" text-5xl fa rounded shadow-2xl"
+                                         src="https://avatars.githubusercontent.com/u/100072983?v=4 rounded"
+                                         alt="user photo">
                                 </a>
                             </div>
-                            <p class="mt-0.5 text-sm text-zinc-700">More details here</p>
+                            <a href="https://github.com/toastxc" class="mt-0.5 text-sm text-blue-700 underline ">More
+                                details here</a>
                         </div>
 
                         <div class="shadow rounded-lg p-2 pb-3">
                             <div class="mt-4 flex items-center justify-between gap-4">
                                 <div>
-                                    <h3 class="text-lg/tight font-semibold text-zinc-900">Supervisor's Name</h3>
-                                    <p class="mt-0.5 text-sm text-zinc-700">Supervisor's Position</p>
+                                    <h3 class="text-lg/tight font-semibold text-zinc-900">Adrian Gould</h3>
+                                    <p class="mt-0.5 text-sm text-zinc-700">Lecturer</p>
                                 </div>
 
-                                <a href="https://github.com/" target="_blank" rel="noreferrer"
+                                <a href="https://github.com/AdyGCode/" target="_blank" rel="noreferrer"
                                    class="text-github-500 transition-color hover:text-github-800">
-                                    <i class="fa-brands fa-github text-4xl"></i>
+                                    <img class=" text-5xl fa rounded shadow-2xl"
+                                         src="https://avatars.githubusercontent.com/u/60425995?v=4" alt="user photo">
                                 </a>
                             </div>
-                            <p class="mt-0.5 text-sm text-zinc-700">More details here</p>
+                            <a href="https://github.com/AdyGCode/" class="mt-0.5 text-sm text-blue-700 underline">More
+                                details here</a>
                         </div>
 
-                        <div class="shadow rounded-lg p-2 pb-3">
-                            <div class="mt-4 flex items-center justify-between gap-4">
-                                <div>
-                                    <h3 class="text-lg/tight font-semibold text-zinc-900">Team Member's Name</h3>
-                                    <p class="mt-0.5 text-sm text-zinc-700">Role in Team</p>
-                                </div>
-
-                                <a href="https://github.com/" target="_blank" rel="noreferrer"
-                                   class="text-github-500 transition-color hover:text-github-800">
-                                    <i class="fa-brands fa-github text-4xl"></i>
-                                </a>
-                            </div>
-                            <p class="mt-0.5 text-sm text-zinc-700">More details here</p>
-                        </div>
-
-                        <div class="shadow rounded-lg p-2 pb-3">
-                            <div class="mt-4 flex items-center justify-between gap-4">
-                                <div>
-                                    <h3 class="text-lg/tight font-semibold text-zinc-900">Team Member's Name</h3>
-                                    <p class="mt-0.5 text-sm text-zinc-700">Role in Team</p>
-                                </div>
-
-                                <a href="https://github.com/" target="_blank" rel="noreferrer"
-                                   class="text-github-500 transition-color hover:text-github-800">
-                                    <i class="fa-brands fa-github text-4xl"></i>
-                                </a>
-                            </div>
-                            <p class="mt-0.5 text-sm text-zinc-700">More details here</p>
-                        </div>
 
                     </div>
                 </div>
@@ -115,19 +91,9 @@
                         </a>
                     </p>
 
-                    <p>
-                        <a href="#" class="hover:text-zinc-700 flex align-middle gap-1">
-                            <span class="min-w-8 h-6 mr-0.5">
-                                <i class="fa-brands fa-livewire text-2xl inline-block"></i>
-                            </span>
-                            <span>
-                                Livewire
-                            </span>
-                        </a>
-                    </p>
 
                     <p>
-                        <a href="#" class="hover:text-zinc-700 flex align-middle gap-1">
+                        <a href="#" class="hover:text-orange-400 flex align-middle gap-1">
                             <span class="min-w-8 h-6 mr-0.5">
                                 <i class="fa-solid fa-s text-2xl inline-block"></i>
                             </span>
@@ -138,9 +104,9 @@
                     </p>
 
                     <p>
-                        <a href="#" class="hover:text-zinc-700 flex align-middle gap-1">
+                        <a href="#" class="hover:text-sky-500 flex align-middle gap-1">
                             <span class="min-w-8 h-6 mr-0.5">
-                                <i class="fa-brands fa-tailwind text-2xl inline-block"></i>
+                                <i class="fa-brands fa-tailwind-css text-2xl inline-block"></i>
                             </span>
                             <span>
                                 TailwindCSS
@@ -149,7 +115,7 @@
                     </p>
 
                     <p>
-                        <a href="#" class="hover:text-zinc-700 flex align-middle gap-1">
+                        <a href="#" class="hover:text-blue-500 flex align-middle gap-1">
                             <span class="min-w-8 h-6 mr-0.5">
                                 <i class="fa-brands fa-font-awesome text-2xl inline-block"></i>
                             </span>
@@ -160,26 +126,30 @@
                     </p>
 
                     <p>
-                        <a href="#" class="hover:text-zinc-700 flex align-middle gap-1">
+                        <a href="#" class="hover:text-zinc-700 flex align-middle gap-1 saturate-0 hover:saturate-100">
                             <span class="min-w-8 h-6 mr-0.5">
-                                <i class="fa-brands fa-jetbrains text-2xl inline-block"></i>
+                                            <img src="https://logonoid.com/images/phpstorm-logo.png"
+                                                 class="fa-brands fa-font-awesome text-2xl inline-block"
+                                                 alt="phpstorm icon"/>
                             </span>
-                            <span>
+                            <span class="bg-clip-text text-transparent bg-linear-to-r from-pink-600 to-purple-500">
                                 PhpStorm
                             </span>
                         </a>
                     </p>
 
                     <p>
-                        <a href="#" class="hover:text-zinc-700 flex align-middle gap-1">
+                        <a href="#" class="hover:text-sky-400 flex align-middle gap-1">
                             <span class="min-w-8 h-6 mr-0.5">
-                                <i class="fa-brands fa-microsoft text-2xl inline-block"></i>
+                                <i class="fa-brands fa-fedora text-2xl inline-block"></i>
                             </span>
                             <span>
-                                VSCode
+                                Fedora
                             </span>
                         </a>
                     </p>
+
+
 
                 </div>
 
