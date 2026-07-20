@@ -13,15 +13,16 @@ class TaskSeeder extends Seeder
      */
     public function run(): void
     {
+
         $tasks = [
             [
                 'label' => 'make quinoa',
-                'due' => fake()->date('1984-3-5'),
+                'due' => '1984-03-05',
                 'badge' => 2,
             ],
             [
                 'label' => 'finish AT2',
-                'due' => Carbon::now(),
+                'due' => Carbon::today()->format('Y-m-d'),
                 'badge' => 1,
             ],
             [
@@ -31,7 +32,7 @@ class TaskSeeder extends Seeder
             ],
             [
                 'label' => 'visit library',
-                'due' => fake()->date('2026-7-4'),
+                'due' => '2026-07-04',
                 'badge' => 2,
             ],
 
