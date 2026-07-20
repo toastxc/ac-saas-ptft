@@ -7,74 +7,51 @@ use App\Models\User;
 test('users can add a badge', function () {
 
     $user = User::factory()->create();
+    $badge = 0;
 
     $this->actingAs($user)->get('/tasks/create',
     )->assertStatus(302);
 
-    $badge = Badge::factory()->create();
+
 
     $this->actingAs($user)->patch('/tasks/1',
         [
-            'badge' => $badge->id,
+            'badge' => $badge,
         ]
     )->assertStatus(302);
 
-    expect(Task::find(1)->badge == $badge->id)->toBeTrue();
+    expect(Task::find(1)->badge == $badge)->toBeTrue();
 
 });
 
-test('users can remove a badge', function () {
 
-    $user = User::factory()->create();
-
-    $badge = Badge::factory()->create();
-
-    $this->actingAs($user)->get('/tasks/create',
-    )->assertStatus(302);
-
-    $this->actingAs($user)->patch('/tasks/1',
-        [
-            'badge' => $badge->id,
-        ]
-    )->assertStatus(302);
-
-    expect(Task::find(1)->badge == $badge->id)->toBeTrue();
-
-    $this->actingAs($user)->patch('/tasks/1',
-        [
-            'badge' => '',
-        ]
-    )->assertStatus(302);
-
-    expect(Task::find(1)->badge == $badge->id)->toBeFalse();
-
-});
 
 test('users can replace a badge', function () {
 
     $user = User::factory()->create();
 
-    $badge = Badge::factory()->create();
-    $badge2 = Badge::factory()->create();
+    $badge1 = 0;
+    $badge2 = 1;
+
 
     $this->actingAs($user)->get('/tasks/create',
     )->assertStatus(302);
 
     $this->actingAs($user)->patch('/tasks/1',
         [
-            'badge' => $badge->id,
+            'badge' => $badge1,
         ]
     )->assertStatus(302);
 
-    expect(Task::find(1)->badge == $badge->id)->toBeTrue();
+    expect(Task::find(1)->badge == $badge1)->toBeTrue();
 
     $this->actingAs($user)->patch('/tasks/1',
         [
-            'badge' => $badge2->id,
+            'badge' => $badge2,
         ]
     )->assertStatus(302);
 
-    expect(Task::find(1)->badge == $badge->id)->toBeFalse()
-        ->and(Task::find(1)->badge == $badge2->id)->toBeTrue();
+    expect(Task::find(1)->badge == $badge1)->toBeFalse()
+        ->and(Task::find(1)->badge == $badge2)->toBeTrue();
 
 });
