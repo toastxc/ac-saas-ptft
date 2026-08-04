@@ -94,6 +94,9 @@ class TaskController extends Controller
                 'due' => ['date', 'nullable'],
             ]);
 
+            // needed
+            $task->due = $request->due;
+
 
         }
 
