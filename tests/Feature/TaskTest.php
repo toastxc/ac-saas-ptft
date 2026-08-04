@@ -17,7 +17,7 @@ test('users can create tasks', function () {
 
     $user = User::factory()->create();
 
-    $this->actingAs($user)->get('/tasks/create',
+    $this->actingAs($user)->post('/tasks/', ['label' => 'test']
     )->assertStatus(302);
 
     expect(Task::find(1) != null)->toBeTrue();
@@ -29,7 +29,7 @@ test('users can delete tasks', function () {
 
     expect(Task::find(1) == null)->toBeTrue();
 
-    $this->actingAs($user)->get('/tasks/create',
+    $this->actingAs($user)->post('/tasks/', ['label' => 'test']
     )->assertStatus(302);
 
     $this->actingAs($user)->delete('/tasks/1'
@@ -43,7 +43,7 @@ test('users can edit tasks', function () {
 
     $user = User::factory()->create();
 
-    $this->actingAs($user)->get('/tasks/create',
+    $this->actingAs($user)->post('/tasks/', ['label' => 'test']
     )->assertStatus(302);
 
     $this->actingAs($user)->patch('/tasks/1',
@@ -61,7 +61,7 @@ test('users cant edit others tasks', function () {
     $user1 = User::factory()->create();
     $user2 = User::factory()->create();
 
-    $this->actingAs($user1)->get('/tasks/create',
+    $this->actingAs($user1)->post('/tasks/', ['label' => 'test']
     )->assertStatus(302);
 
     $this->actingAs($user2)->delete('/tasks/1',

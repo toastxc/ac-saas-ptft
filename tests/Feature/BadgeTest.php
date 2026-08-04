@@ -9,7 +9,7 @@ test('users can add a badge', function () {
     $user = User::factory()->create();
     $badge = 0;
 
-    $this->actingAs($user)->get('/tasks/create',
+    $this->actingAs($user)->post('/tasks/', ['label' => 'test']
     )->assertStatus(302);
 
 
@@ -34,7 +34,7 @@ test('users can replace a badge', function () {
     $badge2 = 1;
 
 
-    $this->actingAs($user)->get('/tasks/create',
+    $this->actingAs($user)->post('/tasks/', ['label' => 'test']
     )->assertStatus(302);
 
     $this->actingAs($user)->patch('/tasks/1',

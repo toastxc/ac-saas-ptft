@@ -25,15 +25,8 @@ class TaskController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        $task = new Task;
-        $task->label = 'new task';
-        $task->user_id = Auth::id();
-        $task->completed = false;
-        $task->save();
-
-        return redirect(route('tasks.edit', ['task' => $task], absolute: false));
     }
 
     /**
@@ -41,8 +34,18 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'label' => ['string', 'min:1', 'max:32'],
+        ]);
 
-        return redirect(route('tasks.index', absolute: false));
+        $task = new Task;
+        $task->label = $request->label;
+        $task->user_id = Auth::id();
+        $task->completed = false;
+        $task->save();
+
+        return redirect(route('tasks.index'));
+
     }
 
     /**
@@ -90,13 +93,11 @@ class TaskController extends Controller
                 'badge' => ['int', 'nullable'],
                 'due' => ['date', 'nullable'],
             ]);
-            $task->due = $request->due;
+
+
         }
 
         $task->update($request->all());
-
-
-
 
         return redirect(route('tasks.index', absolute: false));
     }

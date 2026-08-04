@@ -29,41 +29,74 @@
 
 <x-app-layout>
     <br>
+    <div class="flex justify-center items-center font-[Open_Sans]  font-semibold text-black">
+
+    </div>
+
+
+    <br>
     <div class="flex justify-center items-center">
 
 
-        <table class="divide-y-2 divide-zinc-200 bg-zinc-50 drop-shadow-xl rounded-sm ">
-            <thead class="sticky top-0 bg-zinc-700 ltr:text-left rtl:text-right font-bold">
-            <tr class="*:font-medium *:text-white">
-                <th class="px-1 py-2 whitespace-nowrap">Status</th>
-                <th class="px-3 py-2 whitespace-nowrap">Task</th>
-                <th class="px-3 py-2 whitespace-nowrap">Badges</th>
-                <th class="px-3 py-2 whitespace-nowrap">Due</th>
-            </tr>
-            </thead>
+        <form action="{{ route('tasks.store') }}"
+              method="post"
+              class="">
 
-            <tbody class="divide-y divide-zinc-200">
-            <a href="{{ route('tasks.create') }}"
-               class="fixed bottom-6 right-6 w-14 h-14 bg-green-600 text-white rounded-full shadow-lg hover:shadow-2xl hover:scale-110 transition-all duration-200 flex items-center justify-center z-50">
-                <i class="fa-solid fa-plus"></i>
-            </a>
+            <div
+                class="  flex h-10 section "
+            >
+
+                @csrf
+                @method('post')
+
+                <input
+                    type="text"
+                    id="label"
+                    name="label"
+                    class="w-full border-none bg-white text-black focus:ring-0 sm:text-sm"/>
+
+
+                <button class="bg-emerald-300 px-4 py-2 text-xs/none font-bold tracking-wide  hover:bg-emerald-400">
+                    <a
+                        type="submit"
+
+                        class="">
+                        ADD
+                    </a>
+                </button>
+
+
+            </div>
+        </form>
+
+    </div>
+
+    <br>
+    <div class="flex justify-center items-center">
+
+
+        <div class="section"
+        >
+
             @foreach($tasks as $task)
 
-                <tr class="*:text-zinc-900 *:first:font-medium hover:bg-white">
+                <div
+                    class="flex gap-4   m-3  "
+                >
 
-                    <td class="col-span-5 justify-center justify-self-center mx-auto  text-white text-center text-lg">
+                    <div class="flex flex-col justify-center justify-self-center mx-auto ">
 
                         <form action="{{ route('tasks.update',$task->id) }}"
                               method="post"
-                              class="">
+                        >
                             @csrf
                             @method('patch')
 
 
                             <label for="completed" class="inline-flex items-center gap-3 text-black">
                                 <input type="checkbox"
-                                       class="size-8 border-2 border-black bg-white shadow-[2px_2px_0_0] shadow-black checked:bg-black focus:ring-2 focus:ring-black"
-                                       value="completed" id="completed"
+                                       class="checkbx"
+                                       value="completed" id="{{$task->name}}"
                                        onChange="this.form.submit()"
                                        {{ $task->completed ? 'checked' : '' }} name="completed"
                                 >
@@ -71,43 +104,22 @@
                             <input class="invisible w-0" type="text" value="checkbox" name="checkbox">
 
                         </form>
-                    </td>
-                    <td class="px-3 py-1 whitespace-nowrap flex flex-col min-w-1/3">
+
+                    </div>
+                    <a href="{{route('tasks.edit',$task->id)}}" class="w-250 font-semibold text-black">
+
+                        <span class="">{{ $task->label }}</span>
 
 
-                        <a href="{{route('tasks.edit',$task->id)}}">
-
-                            <span class="">{{ $task->label }}</span>
+                        <br>
 
 
-                        </a>
-
-                        <a href="{{route('tasks.edit',$task->id)}}">
-
-                            <span class="text-sm text-zinc-500">{{ $task->description }}</span>
-                        </a>
-                    </td>
-                    <td class="">
-                        @if($task->badge != null)
-                            @php
-                                $badge = $badges->find($task->badge)
-                            @endphp
-
-                            <span
-                                class="inline-flex items-center justify-center rounded-full bg-{{$badge->color}}-100 px-2.5 py-0.5 text-{{$badge->color}}-700">
-
-                        <p class="text-sm whitespace-nowrap">
-
-                           {{$badge->label}}
-                        </p>
-                        </span>
-                        @endif
+                        <span class="text-sm text-zinc-500">{{ $task->description }}</span>
+                    </a>
 
 
-                    </td>
+                    <div class="flex items-end gap-1 flex-col">
 
-
-                    <td>
                         @if($task->due != null)
 
                             @php
@@ -126,36 +138,55 @@
                                        $text ="$date->day/$date->month";
                                    }
 
-                                   $timeclass = "";
+                                   $class = "badge";
                                    if ($date->isBefore($now)) {
-                                       $timeclass = "text-red-500";
+                                       $class = $class . " bg-red-200";
                                    }
                             @endphp
 
-                            <p class="{{$timeclass}}">
+                            <p class="{{$class}}">
                                 {{$text}}
                             </p>
 
+                        @else
+                            <p class="invisible badge">
+                                {{"padding"}}
+                            </p>
                         @endif
-                    </td>
+                        @if($task->badge != null)
+                            @php
+                                $badge = $badges->find($task->badge)
+                            @endphp
+
+                            <div
+
+                                class="py-1  bg-{{$badge->color}}-100  badge"
+                            >
+
+                                <p class=" whitespace-nowrap">
+
+                                    {{$badge->label}}
+                                </p>
+                            </div>
+                        @else
+                            <p class="invisible badge">
+                                {{"padding"}}
+                            </p>
+                        @endif
 
 
-                </tr>
+                    </div>
+
+
+                </div>
+                <hr class="solid border">
             @endforeach
 
 
-            </tbody>
-
-            <tfoot>
-
-            <tr>
+        </div>
 
 
-            </tr>
-
-            </tfoot>
-
-        </table>
     </div>
+
 
 </x-app-layout>

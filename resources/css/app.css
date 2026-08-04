@@ -11,6 +11,31 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
+
+
+
+
+/* CUSTOM STUFF*/
+
+@layer components {
+    /* 3/4 width 'gradient' block for sections of content*/
+    .section {
+        @apply  w-xl border-2  shadow-[4px_4px_0_0_rgba(135,170,222.25),8px_8px_0_0_rgba(175,198,233.25),12px_12px_0_0_rgba(215,218,244.25)];
+    }
+    /* small boxed text item or icon */
+    .badge {
+        @apply border-2 border-black bg-blue-100 px-3 text-sm/none font-semibold text-black shadow-[2px_2px_0_0] shadow-black;
+    }
+    .checkbx {
+        @apply rounded-none size-8 border-2 border-black bg-white shadow-black checked:bg-black focus:ring-2 focus:ring-black hover:-translate-1 hover:shadow-[4px_4px_0_0]  transition shadow-none;
+    }
+    .text-input {
+        @apply mt-0.5 w-full border-2 border-black bg-white shadow-[4px_4px_0_0] shadow-black sm:text-sm;
+    }
+}
+
+
+
 @theme {
     --color-php-50: oklch(0.957 0.009 286.35);
     --color-php-100: oklch(0.922 0.016 286.15);
