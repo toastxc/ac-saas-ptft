@@ -17,7 +17,7 @@ class TaskController extends Controller
     {
 
         $tasks = User::find(Auth::id())->tasks;
-        $badges = Badge::all();
+        $badges = Badge::where('user_id', Auth::id())->get();
 
         return view('task.index', ['tasks' => $tasks, 'badges' => $badges]);
     }
@@ -64,7 +64,7 @@ class TaskController extends Controller
     {
         $task = $this->bouncer($id);
 
-        return view('task.edit', ['task' => $task, 'badges' => Badge::all()]);
+        return view('task.edit', ['task' => $task, 'badges' => Badge::where('user_id', Auth::id())->get()]);
     }
 
     /**
