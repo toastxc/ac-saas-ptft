@@ -28,6 +28,11 @@
                             {{ __('Tasks') }}
                         </x-nav-link>
 
+
+                        <x-nav-link :href="route('badges.index')" :active="request()->routeIs('badges.*')">
+                            {{ __('Badges') }}
+                        </x-nav-link>
+
                         @if(Auth::user()->hasRole('admin|super-admin'))
                             <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')">
                                 {{ __('Admin') }}
