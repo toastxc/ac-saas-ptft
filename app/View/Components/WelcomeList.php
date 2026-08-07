@@ -11,10 +11,7 @@ class WelcomeList extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct( public string $child,)
-    {
-
-    }
+    public function __construct(public string $child) {}
 
     /**
      * Get the view / contents that represent the component.

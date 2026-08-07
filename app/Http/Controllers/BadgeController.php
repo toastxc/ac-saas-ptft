@@ -40,12 +40,12 @@ class BadgeController extends Controller
         $badge = new Badge;
         $badge->label = $request->label;
         $badge->user_id = Auth::id();
-        $badge->color = "red";
+        $badge->color = 'red';
         $badge->save();
+
         return redirect(route('badges.index'));
 
     }
-
 
     /**
      * Display the specified resource.
@@ -69,15 +69,13 @@ class BadgeController extends Controller
     public function update(Request $request, string $id)
     {
 
-
         $badge = Badge::find($id);
 
         $request->validate([
 
             'color' => ['nullable', 'string'],
-            'label' => ['nullable', 'string', 'min:1', 'max:16']
+            'label' => ['nullable', 'string', 'min:1', 'max:16'],
         ]);
-
 
         if ($request->color != null) {
             $badge->color = $request->color;
@@ -87,9 +85,7 @@ class BadgeController extends Controller
             $badge->label = $request->label;
         }
 
-
         $badge->save();
-
 
         return redirect(route('badges.index', absolute: false));
     }

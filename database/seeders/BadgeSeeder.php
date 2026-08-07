@@ -30,12 +30,9 @@ class BadgeSeeder extends Seeder
                     'user_id' => 100,
                 ]
 
-
             );
 
-
         }
-
 
     }
 }

@@ -106,6 +106,7 @@
                         </form>
 
                     </div>
+
                     <a href="{{route('tasks.edit',$task->id)}}" class="w-250 font-semibold text-black">
 
                         <span class="">{{ $task->label }}</span>

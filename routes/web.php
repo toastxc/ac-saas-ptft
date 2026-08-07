@@ -12,5 +12,4 @@ require __DIR__.'/web.task.php';
 
 require __DIR__.'/web.badge.php';
 
-
 // Route::get('/admin/', [AdminController::class, 'index'])->name('admin');

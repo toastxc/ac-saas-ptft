@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Badge;
 use App\Models\Task;
 use App\Models\User;
 
@@ -12,8 +11,6 @@ test('users can add a badge', function () {
     $this->actingAs($user)->post('/tasks/', ['label' => 'test']
     )->assertStatus(302);
 
-
-
     $this->actingAs($user)->patch('/tasks/1',
         [
             'badge' => $badge,
@@ -24,15 +21,12 @@ test('users can add a badge', function () {
 
 });
 
-
-
 test('users can replace a badge', function () {
 
     $user = User::factory()->create();
 
     $badge1 = 0;
     $badge2 = 1;
-
 
     $this->actingAs($user)->post('/tasks/', ['label' => 'test']
     )->assertStatus(302);

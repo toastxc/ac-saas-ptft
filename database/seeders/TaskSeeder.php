@@ -40,13 +40,13 @@ class TaskSeeder extends Seeder
         foreach ($tasks as $task) {
 
             Task::updateOrCreate([
-                    'user_id' => 100,
-                    'label' => $task['label'],
-                    'completed' => fake()->boolean(),
-                    'description' => fake()->words(5, true),
-                    'due' => $task['due'],
-                    'badge' => $task['badge'],
-                ]
+                'user_id' => 100,
+                'label' => $task['label'],
+                'completed' => fake()->boolean(),
+                'description' => fake()->words(5, true),
+                'due' => $task['due'],
+                'badge' => $task['badge'],
+            ]
             );
 
         }

@@ -9,9 +9,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Category extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'label',
     ];
+
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);
