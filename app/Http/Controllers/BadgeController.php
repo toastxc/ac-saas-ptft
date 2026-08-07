@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Badge;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -96,6 +97,8 @@ class BadgeController extends Controller
     public function destroy(string $id)
     {
         Badge::destroy($id);
+
+        Task::where('badge', $id)->update(['badge' => null]);
 
         return redirect(route('badges.index', absolute: false));
     }
